@@ -10,6 +10,10 @@ namespace MnNiuVideoApp.Common
 {
    public class CameraUtils
     {
+        /// <summary>
+        /// 获取本机电脑所有相机
+        /// </summary>
+        /// <returns></returns>
         public static CameraInfo[] ListCameras()
         {
             DsDevice[] capDevicesDS = DsDevice.GetDevicesOfCat(FilterCategory.VideoInputDevice);
