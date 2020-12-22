@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{20475977-60EA-4EFE-BD7C-06213E04CA88}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MnNiuVideo</RootNamespace>
+    <AssemblyName>MnNiuVideo</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>C:\Users\mhg\Desktop\新建文件夹\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>A8F27E99959D5AE3D51A80990A231299B2C0D397</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>MnNiuVideoApp_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DirectShowLib, Version=2.1.0.1599, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\DirectShowLib.1.0.0\lib\DirectShowLib.dll</HintPath>
+    </Reference>
+    <Reference Include="FFmpeg.AutoGen, Version=3.4.0.5, Culture=neutral, PublicKeyToken=9b7632533a381715, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FFmpeg.AutoGen.3.4.0.5\lib\net45\FFmpeg.AutoGen.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Common\CameraUtils.cs" />
+    <Compile Include="Common\FileHelper.cs" />
+    <Compile Include="Common\LogHelper.cs" />
+    <Compile Include="Common\ProcessesHelper.cs" />
+    <Compile Include="FFmpegBinariesHelper.cs" />
+    <Compile Include="Models\CameraInfo.cs" />
+    <Compile Include="Models\VideoCapabilities.cs" />
+    <Compile Include="NginxProcess.cs" />
+    <Compile Include="PlayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayerForm.Designer.cs">
+      <DependentUpon>PlayerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TstRtmp.cs" />
+    <Compile Include="VideoProcess.cs" />
+    <EmbeddedResource Include="PlayerForm.resx">
+      <DependentUpon>PlayerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="LibConfig\ffmpeg\presets\ffprobe.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LibConfig\ffmpeg\presets\libvpx-1080p.ffpreset" />
+    <None Include="LibConfig\ffmpeg\presets\libvpx-1080p50_60.ffpreset" />
+    <None Include="LibConfig\ffmpeg\presets\libvpx-360p.ffpreset" />
+    <None Include="LibConfig\ffmpeg\presets\libvpx-720p.ffpreset" />
+    <None Include="LibConfig\ffmpeg\presets\libvpx-720p50_60.ffpreset" />
+    <None Include="LibConfig\nginx\conf\fastcgi.conf" />
+    <None Include="LibConfig\nginx\conf\fastcgi_params" />
+    <None Include="LibConfig\nginx\conf\koi-utf" />
+    <None Include="LibConfig\nginx\conf\koi-win" />
+    <None Include="LibConfig\nginx\conf\mime.types" />
+    <None Include="LibConfig\nginx\conf\nginx-win.conf" />
+    <None Include="LibConfig\nginx\conf\nginx.conf" />
+    <None Include="LibConfig\nginx\conf\scgi_params" />
+    <None Include="LibConfig\nginx\conf\uwsgi_params" />
+    <None Include="LibConfig\nginx\conf\win-utf" />
+    <None Include="LibConfig\nginx\docs\dtd\changes.dtd" />
+    <None Include="LibConfig\nginx\docs\dtd\change_log_conf.dtd" />
+    <None Include="LibConfig\nginx\docs\GNUmakefile" />
+    <None Include="LibConfig\nginx\docs\man\nginx.8" />
+    <None Include="LibConfig\nginx\docs\text\LICENSE" />
+    <None Include="LibConfig\nginx\docs\text\README" />
+    <None Include="LibConfig\nginx\docs\xsls\changes.xsls" />
+    <None Include="LibConfig\nginx\logs\access.log" />
+    <None Include="LibConfig\nginx\logs\error.log" />
+    <None Include="LibConfig\nginx\logs\nginx.pid" />
+    <None Include="LibConfig\nginx\nginx.8" />
+    <None Include="LibConfig\nginx\nginx.ilk" />
+    <None Include="LibConfig\nginx\push stream cmd.ini" />
+    <None Include="LibConfig\nginx\start.bat" />
+    <None Include="LibConfig\nginx\stop.bat" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\ffmpeg\bin\ffmpeg.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\ffmpeg\bin\ffplay.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\ffmpeg\bin\ffprobe.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\ffmpeg\LICENSE.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\ffmpeg\README.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\nginx\docs\html\50x.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\nginx\docs\html\index.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\nginx\docs\xml\nginx\changes.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\nginx\docs\xml\change_log_conf.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\nginx\docs\xslt\changes.xslt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\nginx\nginx.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\nginx\nginx.pdb" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LibConfig\nginx\nginx.res" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="LibConfig\nginx\temp\client_body_temp\" />
+    <Folder Include="LibConfig\nginx\temp\fastcgi_temp\" />
+    <Folder Include="LibConfig\nginx\temp\proxy_temp\" />
+    <Folder Include="LibConfig\nginx\temp\scgi_temp\" />
+    <Folder Include="LibConfig\nginx\temp\uwsgi_temp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icon\10.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icon\start.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icon\resizeApi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Icon\resizeApi %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="FFmpeg\bin\x64\avcodec-57.dll" />
+    <Content Include="FFmpeg\bin\x64\avdevice-57.dll" />
+    <Content Include="FFmpeg\bin\x64\avfilter-6.dll" />
+    <Content Include="FFmpeg\bin\x64\avformat-57.dll" />
+    <Content Include="FFmpeg\bin\x64\avutil-55.dll" />
+    <Content Include="FFmpeg\bin\x64\postproc-54.dll" />
+    <Content Include="FFmpeg\bin\x64\swresample-2.dll" />
+    <Content Include="FFmpeg\bin\x64\swscale-4.dll" />
+    <Content Include="FFmpeg\bin\x86\avcodec-57.dll" />
+    <Content Include="FFmpeg\bin\x86\avdevice-57.dll" />
+    <Content Include="FFmpeg\bin\x86\avfilter-6.dll" />
+    <Content Include="FFmpeg\bin\x86\avformat-57.dll" />
+    <Content Include="FFmpeg\bin\x86\avutil-55.dll" />
+    <Content Include="FFmpeg\bin\x86\ffmpeg.exe" />
+    <Content Include="FFmpeg\bin\x86\ffplay.exe" />
+    <Content Include="FFmpeg\bin\x86\ffprobe.exe" />
+    <Content Include="FFmpeg\bin\x86\postproc-54.dll" />
+    <Content Include="FFmpeg\bin\x86\swresample-2.dll" />
+    <Content Include="FFmpeg\bin\x86\swscale-4.dll" />
+    <Content Include="FFmpeg\include\libavcodec\avcodec.h" />
+    <Content Include="FFmpeg\include\libavcodec\avdct.h" />
+    <Content Include="FFmpeg\include\libavcodec\avfft.h" />
+    <Content Include="FFmpeg\include\libavcodec\d3d11va.h" />
+    <Content Include="FFmpeg\include\libavcodec\dirac.h" />
+    <Content Include="FFmpeg\include\libavcodec\dv_profile.h" />
+    <Content Include="FFmpeg\include\libavcodec\dxva2.h" />
+    <Content Include="FFmpeg\include\libavcodec\jni.h" />
+    <Content Include="FFmpeg\include\libavcodec\mediacodec.h" />
+    <Content Include="FFmpeg\include\libavcodec\qsv.h" />
+    <Content Include="FFmpeg\include\libavcodec\vaapi.h" />
+    <Content Include="FFmpeg\include\libavcodec\vda.h" />
+    <Content Include="FFmpeg\include\libavcodec\vdpau.h" />
+    <Content Include="FFmpeg\include\libavcodec\version.h" />
+    <Content Include="FFmpeg\include\libavcodec\videotoolbox.h" />
+    <Content Include="FFmpeg\include\libavcodec\vorbis_parser.h" />
+    <Content Include="FFmpeg\include\libavcodec\xvmc.h" />
+    <Content Include="FFmpeg\include\libavdevice\avdevice.h" />
+    <Content Include="FFmpeg\include\libavdevice\version.h" />
+    <Content Include="FFmpeg\include\libavfilter\avfilter.h" />
+    <Content Include="FFmpeg\include\libavfilter\avfiltergraph.h" />
+    <Content Include="FFmpeg\include\libavfilter\buffersink.h" />
+    <Content Include="FFmpeg\include\libavfilter\buffersrc.h" />
+    <Content Include="FFmpeg\include\libavfilter\version.h" />
+    <Content Include="FFmpeg\include\libavformat\avformat.h" />
+    <Content Include="FFmpeg\include\libavformat\avio.h" />
+    <Content Include="FFmpeg\include\libavformat\version.h" />
+    <Content Include="FFmpeg\include\libavutil\adler32.h" />
+    <Content Include="FFmpeg\include\libavutil\aes.h" />
+    <Content Include="FFmpeg\include\libavutil\aes_ctr.h" />
+    <Content Include="FFmpeg\include\libavutil\attributes.h" />
+    <Content Include="FFmpeg\include\libavutil\audio_fifo.h" />
+    <Content Include="FFmpeg\include\libavutil\avassert.h" />
+    <Content Include="FFmpeg\include\libavutil\avconfig.h" />
+    <Content Include="FFmpeg\include\libavutil\avstring.h" />
+    <Content Include="FFmpeg\include\libavutil\avutil.h" />
+    <Content Include="FFmpeg\include\libavutil\base64.h" />
+    <Content Include="FFmpeg\include\libavutil\blowfish.h" />
+    <Content Include="FFmpeg\include\libavutil\bprint.h" />
+    <Content Include="FFmpeg\include\libavutil\bswap.h" />
+    <Content Include="FFmpeg\include\libavutil\buffer.h" />
+    <Content Include="FFmpeg\include\libavutil\camellia.h" />
+    <Content Include="FFmpeg\include\libavutil\cast5.h" />
+    <Content Include="FFmpeg\include\libavutil\channel_layout.h" />
+    <Content Include="FFmpeg\include\libavutil\common.h" />
+    <Content Include="FFmpeg\include\libavutil\cpu.h" />
+    <Content Include="FFmpeg\include\libavutil\crc.h" />
+    <Content Include="FFmpeg\include\libavutil\des.h" />
+    <Content Include="FFmpeg\include\libavutil\dict.h" />
+    <Content Include="FFmpeg\include\libavutil\display.h" />
+    <Content Include="FFmpeg\include\libavutil\downmix_info.h" />
+    <Content Include="FFmpeg\include\libavutil\error.h" />
+    <Content Include="FFmpeg\include\libavutil\eval.h" />
+    <Content Include="FFmpeg\include\libavutil\ffversion.h" />
+    <Content Include="FFmpeg\include\libavutil\fifo.h" />
+    <Content Include="FFmpeg\include\libavutil\file.h" />
+    <Content Include="FFmpeg\include\libavutil\frame.h" />
+    <Content Include="FFmpeg\include\libavutil\hash.h" />
+    <Content Include="FFmpeg\include\libavutil\hmac.h" />
+    <Content Include="FFmpeg\include\libavutil\hwcontext.h" />
+    <Content Include="FFmpeg\include\libavutil\hwcontext_cuda.h" />
+    <Content Include="FFmpeg\include\libavutil\hwcontext_d3d11va.h" />
+    <Content Include="FFmpeg\include\libavutil\hwcontext_drm.h" />
+    <Content Include="FFmpeg\include\libavutil\hwcontext_dxva2.h" />
+    <Content Include="FFmpeg\include\libavutil\hwcontext_qsv.h" />
+    <Content Include="FFmpeg\include\libavutil\hwcontext_vaapi.h" />
+    <Content Include="FFmpeg\include\libavutil\hwcontext_vdpau.h" />
+    <Content Include="FFmpeg\include\libavutil\hwcontext_videotoolbox.h" />
+    <Content Include="FFmpeg\include\libavutil\imgutils.h" />
+    <Content Include="FFmpeg\include\libavutil\intfloat.h" />
+    <Content Include="FFmpeg\include\libavutil\intreadwrite.h" />
+    <Content Include="FFmpeg\include\libavutil\lfg.h" />
+    <Content Include="FFmpeg\include\libavutil\log.h" />
+    <Content Include="FFmpeg\include\libavutil\lzo.h" />
+    <Content Include="FFmpeg\include\libavutil\macros.h" />
+    <Content Include="FFmpeg\include\libavutil\mastering_display_metadata.h" />
+    <Content Include="FFmpeg\include\libavutil\mathematics.h" />
+    <Content Include="FFmpeg\include\libavutil\md5.h" />
+    <Content Include="FFmpeg\include\libavutil\mem.h" />
+    <Content Include="FFmpeg\include\libavutil\motion_vector.h" />
+    <Content Include="FFmpeg\include\libavutil\murmur3.h" />
+    <Content Include="FFmpeg\include\libavutil\opt.h" />
+    <Content Include="FFmpeg\include\libavutil\parseutils.h" />
+    <Content Include="FFmpeg\include\libavutil\pixdesc.h" />
+    <Content Include="FFmpeg\include\libavutil\pixelutils.h" />
+    <Content Include="FFmpeg\include\libavutil\pixfmt.h" />
+    <Content Include="FFmpeg\include\libavutil\random_seed.h" />
+    <Content Include="FFmpeg\include\libavutil\rational.h" />
+    <Content Include="FFmpeg\include\libavutil\rc4.h" />
+    <Content Include="FFmpeg\include\libavutil\replaygain.h" />
+    <Content Include="FFmpeg\include\libavutil\ripemd.h" />
+    <Content Include="FFmpeg\include\libavutil\samplefmt.h" />
+    <Content Include="FFmpeg\include\libavutil\sha.h" />
+    <Content Include="FFmpeg\include\libavutil\sha512.h" />
+    <Content Include="FFmpeg\include\libavutil\spherical.h" />
+    <Content Include="FFmpeg\include\libavutil\stereo3d.h" />
+    <Content Include="FFmpeg\include\libavutil\tea.h" />
+    <Content Include="FFmpeg\include\libavutil\threadmessage.h" />
+    <Content Include="FFmpeg\include\libavutil\time.h" />
+    <Content Include="FFmpeg\include\libavutil\timecode.h" />
+    <Content Include="FFmpeg\include\libavutil\timestamp.h" />
+    <Content Include="FFmpeg\include\libavutil\tree.h" />
+    <Content Include="FFmpeg\include\libavutil\twofish.h" />
+    <Content Include="FFmpeg\include\libavutil\version.h" />
+    <Content Include="FFmpeg\include\libavutil\xtea.h" />
+    <Content Include="FFmpeg\include\libpostproc\postprocess.h" />
+    <Content Include="FFmpeg\include\libpostproc\version.h" />
+    <Content Include="FFmpeg\include\libswresample\swresample.h" />
+    <Content Include="FFmpeg\include\libswresample\version.h" />
+    <Content Include="FFmpeg\include\libswscale\swscale.h" />
+    <Content Include="FFmpeg\include\libswscale\version.h" />
+    <Content Include="Icon\20201221050203862_easyicon_net_128.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+xcopy /e /r /y $(ProjectDir)FFmpeg $(SolutionDir)$(OutDir)\bin
+
+xcopy /e /r /y $(ProjectDir)LibConfig $(SolutionDir)$(OutDir)\bin
+</PostBuildEvent>
+  </PropertyGroup>
+</Project>
