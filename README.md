@@ -1,4 +1,4 @@
-### # MnNiuVideo
+### # MnNiuVideo(迷你牛)
 
 ####  **介绍** 
  **基于asp.net framework4.5 winfrom开发的桌面推拉流程序。既有服务端推流，也有客户端拉流。** 

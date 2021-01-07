@@ -62,50 +62,28 @@ namespace MnNiuVideoApp.Common
         /// <summary>结束进程</summary>
         /// <param name="processesId">进程ID</param>
         /// <returns>返回bool类型结果</returns>
-        public static bool KillProcesses(int processesId)
-        {
-            bool flag = false;
-            try
+        public static void KillProcesses(int processesId)
+        {          
+            foreach (Process process in Process.GetProcesses())
             {
-                foreach (Process process in Process.GetProcesses())
+                if (process.Id == processesId)
                 {
-                    if (process.Id == processesId)
-                    {
-                        process.Kill();
-                        flag = true;
-                        break;
-                    }
+                    process.Kill();                  
+                    break;
                 }
-            }
-            catch (Exception ex)
-            {
-                flag = false;
-                LogHelper.WriteLog(ex.Message);
-            }
-            return flag;
+            }         
         }
 
         /// <summary>结束进程</summary>
         /// <param name="processesName">进程名</param>
         /// <returns>返回bool类型结果</returns>
-        public static bool KillProcesses(string processesName)
+        public static void KillProcesses(string processesName)
         {
-            bool flag;
-            try
+            foreach (Process process in Process.GetProcesses())
             {
-                foreach (Process process in Process.GetProcesses())
-                {
-                    if (process.ProcessName.ToUpper() == Path.GetFileNameWithoutExtension(processesName).ToUpper())
-                        process.Kill();
-                }
-                flag = true;
+                if (process.ProcessName.ToUpper() == Path.GetFileNameWithoutExtension(processesName).ToUpper())
+                    process.Kill();
             }
-            catch (Exception ex)
-            {
-                flag = false;
-                LogHelper.WriteLog(ex.Message);
-            }
-            return flag;
         }
     }
 }

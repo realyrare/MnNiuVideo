@@ -79,12 +79,7 @@ namespace MnNiuVideoApp
         /// <returns></returns>
         public void StopService()
         {
-            var flag = ProcessesHelper.KillProcesses(_nginxFileName);
-            if (!flag)
-            {
-                LogHelper.WriteLog("nginx关闭失败");
-            }
-            LogHelper.WriteLog("nginx关闭成功");
+            ProcessesHelper.KillProcesses(_nginxFileName);
         }
 
 
