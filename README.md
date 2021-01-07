@@ -1,39 +1,32 @@
 # MnNiuVideo
 
 #### 介绍
-基于.net framework winfrom开发的桌面推拉流程序。
+ **基于asp.net framework4.5 winfrom开发的桌面推拉流程序。既有服务端推流，也有客户端拉流。** 
 
 #### 软件架构
 使用的技术点：
 1、nginx
 2、ffmpeg
-3、winfrom process
+3、asp.net framework4.5  winfrom process
+4、开发工具vs2019 
+5、开发语言c#
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  克隆或下载程序后可以使用vs打开解决方案 、然后选择debug或relase方式进行编译，建议relase,编译后的软件在Bin\debug|relase目录下。
+2.  双击Bin\debug|relase目录下 MnNiuVideo.exe 即可运行起来。
+3.  软件打开后，选择本机相机（如果本机有多个相机任意选一个）、点击开始直播(推流)，然后点击开始播放(拉流)。
 
-#### 使用说明
+#### 功能
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  winfrom桌面拉流播放（拉流）
+2.  推流(直播)
+3.  (直播)推流录屏
+4.  ....想到再加上去
 
-#### 参与贡献
-
-1.  Fork 本仓库
-2.  新建 Feat_xxx 分支
-3.  提交代码
-4.  新建 Pull Request
+#### 界面展示
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0107/184818_6736664e_1173871.png "1.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0107/185155_915f5f4a_1173871.png "2.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0107/185208_df4e6270_1173871.png "3.png")
 
 
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
