@@ -1,10 +1,7 @@
 ﻿using MnNiuVideoApp.Common;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Text;
-using System.Threading;
 using System.Windows.Forms;
 
 namespace MnNiuVideoApp
@@ -32,116 +29,65 @@ namespace MnNiuVideoApp
         }
         //关掉所有nginx的进程,格式必须这样，有空格存在  taskkill /IM  nginx.exe  /F
 
-        public bool ExecStartService()
-        {
-            try
-            {
-                ProcessStartInfo sinfo = new ProcessStartInfo
-                {
-                    FileName = _nginxFilePath,
-                    Verb = "runas",
-                    WorkingDirectory = _workingDirectory,
-                    Arguments = _arguments
-                };
-#if DEBUG
-                sinfo.UseShellExecute = true;
-                sinfo.CreateNoWindow = false;
-#else
-                sinfo.UseShellExecute = false;
-#endif
 
-                using (Process process = Process.Start(sinfo))
-                {
-                    //process?.WaitForExit();
-                    _processId = process.Id;
-                }
-                return true;
-            }
-            catch (Exception e)
-            {
-                LogHelper.WriteLog(e.Message);
-                MessageBox.Show(e.Message);
-                return false;
-            }
-        }
 
         /// <summary>
         /// 启动服务
         /// </summary>
         /// <returns></returns>
-        public bool StartService()
+        public void StartService()
         {
-            bool res = false;
-            if (!ProcessesHelper.IsCheckProcesses(_nginxFileName))
-            {
-                res = ExecStartService();
-            }
-            else
-            {
-                res = true;
-            }
-
-            return res;
-        }
-
-        /// <summary>
-        /// 重启服务
-        /// </summary>
-        /// <returns></returns>
-        public bool StopService()
-        {
-
-            bool res = false;
-            res = Kill();
-            return res;
-        }
-
-        /// <summary>
-        /// 重置服务
-        /// </summary>
-        /// <returns></returns>
-        public bool RestartService()
-        {
-            bool res = false;
-            Kill();
-            Thread.Sleep(3000);
-            res = ExecStartService();
-            return true;
-        }
-
-
-        public bool Kill()
-        {
-            bool res = false;
             try
             {
-                ProcessStartInfo sinfo = new ProcessStartInfo
+                if (ProcessesHelper.IsCheckProcesses(_nginxFileName))
                 {
-
-                    FileName = Path.Combine(_workingDirectory, _stop),
-                    Verb = "runas",
-                    WorkingDirectory = _workingDirectory,
-                    Arguments = _arguments
-                };
+                    LogHelper.WriteLog("nginx进程已经启动过了");
+                }
+                else
+                {
+                    var sinfo = new ProcessStartInfo
+                    {
+                        FileName = _nginxFilePath,
+                        Verb = "runas",
+                        WorkingDirectory = _workingDirectory,
+                        Arguments = _arguments
+                    };
 #if DEBUG
-                sinfo.UseShellExecute = true;
-                // sinfo.CreateNoWindow = true;
+                    sinfo.UseShellExecute = true;
+                    sinfo.CreateNoWindow = false;
 #else
                 sinfo.UseShellExecute = false;
 #endif
-
-                using (Process _process = Process.Start(sinfo))
-                {
-                    _processId = _process.Id;
+                    using (var process = Process.Start(sinfo))
+                    {
+                        //process?.WaitForExit();
+                        _processId = process.Id;
+                    }
                 }
-                res = true;
             }
-            catch (Exception ex)
+            catch (Exception e)
             {
-                MessageBox.Show(ex.Message);
+                LogHelper.WriteLog(e.Message);
+                MessageBox.Show(e.Message);
             }
-            return res;
+
         }
+
+        /// <summary>
+        /// 关闭nginx所有进程
+        /// </summary>
+        /// <returns></returns>
+        public void StopService()
+        {
+            var flag = ProcessesHelper.KillProcesses(_nginxFileName);
+            if (!flag)
+            {
+                LogHelper.WriteLog("nginx关闭失败");
+            }
+            LogHelper.WriteLog("nginx关闭成功");
+        }
+
+
 
         /// <summary>
         /// 需要以管理员身份调用才能起作用

@@ -29,7 +29,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerForm));
             this.panel1 = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.AllCamera = new System.Windows.Forms.ToolStripLabel();
@@ -47,9 +46,8 @@
             this.HelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SeeHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.CheckUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pic = new System.Windows.Forms.PictureBox();
             this.StartLiveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.pic = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -76,8 +74,7 @@
             this.toolStripComboBox1,
             this.toolStripLabel1,
             this.PlayAddressComboBox,
-            this.toolStripDropDownButton,
-            this.toolStripButton1});
+            this.toolStripDropDownButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 25);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(775, 25);
@@ -198,6 +195,15 @@
             this.CheckUpdateToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.CheckUpdateToolStripMenuItem.Text = "检查更新";
             // 
+            // StartLiveToolStripMenuItem
+            // 
+            this.StartLiveToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.StartLiveToolStripMenuItem.Image = global::MnNiuVideo.Properties.Resources.resizeApi;
+            this.StartLiveToolStripMenuItem.Name = "StartLiveToolStripMenuItem";
+            this.StartLiveToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
+            this.StartLiveToolStripMenuItem.Text = "开始直播";
+            this.StartLiveToolStripMenuItem.Click += new System.EventHandler(this.StartLiveToolStripMenuItem_Click);
+            // 
             // pic
             // 
             this.pic.BackColor = System.Drawing.SystemColors.ButtonHighlight;
@@ -212,24 +218,6 @@
             this.pic.TabIndex = 2;
             this.pic.TabStop = false;
             // 
-            // StartLiveToolStripMenuItem
-            // 
-            this.StartLiveToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.StartLiveToolStripMenuItem.Image = global::MnNiuVideo.Properties.Resources.resizeApi;
-            this.StartLiveToolStripMenuItem.Name = "StartLiveToolStripMenuItem";
-            this.StartLiveToolStripMenuItem.Size = new System.Drawing.Size(84, 21);
-            this.StartLiveToolStripMenuItem.Text = "开始直播";
-            this.StartLiveToolStripMenuItem.Click += new System.EventHandler(this.StartLiveToolStripMenuItem_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            // 
             // PlayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -241,6 +229,8 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PlayerForm";
             this.Text = "迷你牛";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PlayerForm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.PlayerForm_FormClosed);
             this.Load += new System.EventHandler(this.PlayerForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -274,7 +264,6 @@
         private System.Windows.Forms.ToolStripLabel AllCamera;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBox1;
         private System.Windows.Forms.ToolStripMenuItem StartLiveToolStripMenuItem;
-        private System.Windows.Forms.ToolStripButton toolStripButton1;
     }
 }
 

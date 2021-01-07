@@ -19,7 +19,7 @@ namespace MnNiuVideo
         public PlayerForm()
         {
             InitializeComponent();
-            new NginxProcess().RestartService();
+            new NginxProcess().StopService();
             var cameras = CameraUtils.ListCameras();
             if (toolStripComboBox1.ComboBox != null)
             {
@@ -190,6 +190,31 @@ namespace MnNiuVideo
         private void PlayerForm_Load(object sender, EventArgs e)
         {
             // if (toolStripComboBox1.ComboBox != null) toolStripComboBox1.ComboBox.SelectedIndex = 0;
+        }
+
+        private void PlayerForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+            this.Close();
+        }
+
+        private void PlayerForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dr = MessageBox.Show("您是否退出?", "提示:", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+
+            if (dr != DialogResult.OK)
+            {
+                if (dr == DialogResult.Cancel)
+                {
+                    e.Cancel = true; //不执行操作
+                }
+            }
+            else
+            {
+                new NginxProcess().StopService();
+                Application.Exit();
+                e.Cancel = false; //关闭窗体
+            }
         }
     }
 }
